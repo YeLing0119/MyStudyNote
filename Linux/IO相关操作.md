@@ -92,7 +92,27 @@
 
 ​	关闭文件
 
+#### lseek
 
+​	```int lseek(int fd , off_t offset , int whence)``` 
+
+​	定位到指定位置
+
+​	参数：
+
+​		offset ： 偏移量
+
+​		whence ：
+
+​			SEEK_SET	文件开始
+
+​			SEEK_CUR	文件当前指向
+
+​			SEEK_END	文件结尾
+
+​	返回值：
+
+​		相对于文件开头的偏移多少字节
 
 结合以上函数 写一个简单的拷贝函数
 
