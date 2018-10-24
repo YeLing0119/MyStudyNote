@@ -1,4 +1,4 @@
-## 进程间通信（IPC）
+## 程间通信（IPC）
 
 #### 为什么要进程通信？
 
@@ -52,4 +52,18 @@
 
 ​	```int  pipe (int fds[2])；``` 
 
-​	![](./管道.jpg)
+​	
+
+![](./管道.jpg)
+
+一个例子
+
+​	[利用管道函数pipe实现进程间通讯](https://github.com/YeLing0119/MyCode/tree/master/Linux/pipe)
+
+#### 消息队列
+
+​	int msgget(key_t key,  
+
+​				int flags)	//	创建  IPC_CREAT | 0644 
+
+​							打开   0
