@@ -18,7 +18,7 @@
 
 ​	比如我们要做一个雷盘大小为10 \* 10的一个扫雷游戏，理论上我们需要一个10 \* 10 的数组，那么问题来了，那么边缘的雷数怎么算呢？所以我们需要一个比雷盘大小要大2的一个数组，比如10\*10的扫雷就需要一个12*12的数组；这样一来，本来数组列是从 0~11 但是我们只用 1~10，这样用户在输入的时候好输入，我们在计算边缘雷数的时候也非常好判断，一举两得。大致的结构是这样的。
 
-![](E:\MyCode\MyStudyNote\C\mine\leipan.png)					    		 			  
+![](./mine/leipan.png)					    		 			  
 
 ​	但是就仅仅一个雷盘够吗？答案是当然不够的，总不可能把雷盘直接显示给用户，这里我们还需要一个显示数组，大小和雷盘数组一样大。
 
@@ -160,7 +160,7 @@ void PrintBoard(char board[][COL], int _row, int _col){
 }
 ```
 
-​	打印出来的样例：有木有很漂(xian)亮(qi)​	 ![ ](E:\MyCode\MyStudyNote\C\mine\mine.png)
+​	打印出来的样例：有木有很漂(xian)亮(qi)​	 ![ ](./mine/mine.png)
 
 ##### 5、Click( )    用户输入
 
@@ -283,7 +283,7 @@ int CheckAround(char mine[][ROW], char show[][COL], int x, int y, int *is_win){
 
 ​	到这里我们就差不多完成了这个扫雷小程序，让我们看看结果把，这里我只设置了两个雷，看看递归展开之后的结果。
 
-​	![](E:\MyCode\MyStudyNote\C\mine\dihuizhankai.png)
+​	![](./mine/dihuizhankai.png)
 
 ​	有木有很NICE呢？
 
@@ -298,3 +298,4 @@ int CheckAround(char mine[][ROW], char show[][COL], int x, int y, int *is_win){
 ​	由于本人才疏学浅，若有疏忽还望不吝赐教。
 
 ​	@YeLing0119
+
