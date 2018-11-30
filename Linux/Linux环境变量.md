@@ -15,6 +15,8 @@ unset name 删除环境变量
 
 env  查看系统所有的环境变量
 
+set  
+
 echo $环境变量名  打印出相应的环境变量值
 
 ​注意：
@@ -28,7 +30,7 @@ echo $环境变量名  打印出相应的环境变量值
 #### 在程序红获取环境变量
 ​1、获取所有的环境变量，给main函数中添加第三个参数，char argp[]     
 2、获取某一个环境变量的值：val = getenv("name")；    
-3、extern char **environ;   C库全局变量变量
+3、extern char **environ;&nbsp;&nbsp;C库全局变量变量
 
 #### 在程序中设置环境变量
 
