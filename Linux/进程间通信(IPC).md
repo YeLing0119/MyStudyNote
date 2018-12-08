@@ -84,53 +84,44 @@
     //随便			随意类型，写上自己的消息
     }	
     ```
-​	3 . 接收消息
-
-​		ssize_t msgrcv(int msgid , 		//msgget的返回值
-
-​			void *msgp , 	//取出消息存放位置
-
-​			size_t msgsz , 	//装消息位置的大小，不包括类型
-
-​			long msgtype , 	//取那个类型的消息
-
-​			int msgflag);		//选项，一般填0 ， 表示没有消息就在等，有了就取出来
-
-​	返回值：-1	失败   	成功实际拷贝的字节数
-
-​	
-
+3. 接收消息
+    ```c
+    ssize_t msgrcv(
+        int msgid, //msgget的返回值
+        void *msgp, //取出消息存放位置
+        size_t msgsz, //装消息位置的大小，不包括类型
+        long msgtype, //取那个类型的消息
+        int msgflag //选项，一般填0，表示没有消息就在等，有了就取出来
+    );
+    ```
+- 返回值：-1	失败   	成功实际拷贝的字节数
 #### 共享内存
+1. 创建或者打开共享内存
+    ```c
+    ​shmget(
+        key_t key, //相当于文件名
+        size_t size,  //共享内存的大小
+        int flag   //创建IPC_CREAT|0664	打开0
+    );  
+    ```
+- 返回值：-1  	 失败    0		成功
 
-​	1 . 创建或者打开共享内存
-
-​		shmget(key_t key , 	//相当于文件名
-
-​			size_t size,	//共享内存的大小
-
-​			inr flag);		//创建IPC_CREAT|0664	打开0
-
-​	返回值：-1  	 失败    0		成功
-
-​	2 . 让共享内存与本进程建立关系
-
-​		void  *shmat(key_t key , 
-
-​			const char* shmaddr ,   //让操作系统挂载到地址空间的位置  若为NULL，这让操作系统自己选择 
-
-​			int flag);				// 0
-
-​	返回值：实际挂载到虚拟地址空间的起始位置
-
-​	3 . 卸载掉共享内存
-
-​		int   shmdt(void * shmaddr)	;	
-
-​	4 . 删除共享内存
-
-​		int shmctl(key_t key , 
-
-​					int cmd , 	//	IPC_RMID	删除共享内存
-
-​					NULL)		//本来这里是个结构体，但是删除用不上，直接填NULL
-
+2. 让共享内存与本进程建立关系
+    ```c
+    ​void  *shmat(
+        key_t key , 
+        const char* shmaddr ,  //让操作系统挂载到地址空间的位置 若为NULL，这让操作系统自己选择 
+        int flag    // 0
+    );
+    ```
+- 返回值：实际挂载到虚拟地址空间的起始位置
+3. 卸载掉共享内存
+    `int shmdt(void * shmaddr);`	
+4. 删除共享内存
+    ```c
+    ​int shmctl(
+        key_t key , 
+        int cmd , //IPC_RMID 删除共享内存
+        NULL    //本来这里是个结构体，但是删除用不上，直接填NULL
+    )
+    ```
