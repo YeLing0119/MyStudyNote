@@ -25,49 +25,48 @@
 1. 直接定义
 2. 嵌套定义
 
-```c++
-#include <iostream>
-using namespace std;
+    ```c++
+    #include <iostream>
+    using namespace std;
 
-namespace namespaceA
-{
-    int a = 0 ;
-    namespace namespaceD
+    namespace namespaceA
     {
-    	int b;
-    }    	
-}
-
-namespace namespaceB
-{
-    int a = 0 ;
-    namespace namespaceC
-    {
-    	int b;
+        int a = 0 ;
+        namespace namespaceD
+        {
+        	int b;
+        }    	
     }
-}
 
-int main()
-{
-    using namespace namespaceA;
-    using namespace namespaceB;
-	cout << a << endl;  
-}
-```
+    namespace namespaceB
+    {
+        int a = 0 ;
+        namespace namespaceC
+        {
+        	int b;
+        }
+    }
 
-这样编译，会报错，提示你 a 的命名空间不明确，改成以下即可正确运行：
+    int main()
+    {
+        using namespace namespaceA;
+        using namespace namespaceB;
+    	cout << a << endl;  
+    }
+    ```
 
-```C++
-cout << namespaceA :: a << end ;
-cout << namespaceB :: a << end ;
-```
+    这样编译，会报错，提示你 a 的命名空间不明确，改成以下即可正确运 行：
+
+    ```C++
+    cout << namespaceA :: a << end ;
+    cout << namespaceB :: a << end ;
+    ```
 
 
 
-注意，namespace的定义可以嵌套，比如要访问 namespaceC 中的 b 可以这样写
+    注意，namespace的定义可以嵌套，比如要访问 namespaceC 中的 b 可  以这样写
 
-```C++
-using namespace namespaceB::namespaceC;
-cout << b << endl ;  //这样就可以访问 namespaceC 中的 b 了；
-```
-
+    ```C++
+    using namespace namespaceB::namespaceC;
+    cout << b << endl ;  //这样就可以访问 namespaceC 中的 b     了；
+    ```
