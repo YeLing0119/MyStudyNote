@@ -192,8 +192,8 @@
         - 在second秒之后发送一个SIGALRM信号(设置一个定时器)，
         - 返回值：上一个定时器剩余时间
     - int sigqueue()
-        - 功能：向指定进程发送信号，并携带一个结合体参数
-        - 结合体形式：
+        - 功能：向指定进程发送信号，并携带一个联合体参数
+        - 联合体形式：
             ```c
             union sigval {
                 int   sival_int;
@@ -216,10 +216,10 @@
     ```
     - 注册流程
         - 向pcb中添加相应信号的sigqueue节点，并修pending位图，标记这个信号需要被处理
-        - _sigset_t 位图结构体　里面一共有1024位
+        - sigset_t 位图结构体　里面一共有1024位
     - 信号的注销:删除节点，修改位图
-    - 非可靠信号：若位图为０，则添加节点，修改位图，若位图为１，则什么都不做(第二次到来的信号被丢弃)
-    - 可靠信号：不管位图是否为１，信号每次注册时都要添加新节点，删除一个节点，如仍有相同的信号节点，则不修改位图，否则修改位图为０
+    - 非可靠信号：若位图为0，则添加节点，修改位图，若位图为1，则什么都不做(第二次到来的信号被丢弃)
+    - 可靠信号：不管位图是否为1，信号每次注册时都要添加新节点，删除一个节点，如仍有相同的信号节点，则不修改位图，否则修改位图为0
 - 信号的处理
     - 默认处理方式：系统中已经定义好了，处理这个信号多对应的时间
     - 忽略处理：信号到来，不注册
@@ -228,12 +228,14 @@
             - 函数原型
                 ```c
                 typedef void (*sighandler_t)(int);
-                sighandler_t signal(int signum, sighandler_t handler);
+                sighandler_t signal(
+                    int signum,                 sighandler_t handler
+                );
                 ```
             - 修改信号处理函数
             - 参数：
                 - signum：信号的编号
-                - ighandler_t handler 函数指针
+                - sighandler_t handler 函数指针
                     - SIG_IGN 忽略处理
                     - SIG_DFL 默认处理
                     - 给出相应的处理函数
@@ -251,7 +253,7 @@
                void (*sa_handler)(int);
                void (*sa_sigaction)(int, siginfo_t *, void *);
                sigset_t sa_mask; //位图　标记临时阻塞信号
-               int sa_flags;    //制定调用的函数１/2
+               int sa_flags;    //指定调用的函数1/2
                void (*sa_restorer)(void);
             };
             ```
